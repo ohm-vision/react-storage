@@ -1,0 +1,33 @@
+{
+  "name": "@ohm-vision/react-storage",
+  "version": "1.0.0",
+  "description": "Extension to React to interact with native Window Storage object",
+  "author": "Ohm Vision, Inc",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "useStorage",
+    "localStorage",
+    "sessionStorage",
+    "browserStorage"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohm-vision/react-storage.git"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "react": "^18.0.0"
+  }
+}
