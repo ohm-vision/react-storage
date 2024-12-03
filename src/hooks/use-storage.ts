@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { IsBrowser } from "../utils/browser.util";
 import { StorageProps } from "../config/storage-props";
 import { StorageInterface } from "../interfaces/storage-interface";
@@ -35,8 +35,8 @@ export function useStorage<TElement>(props: StorageProps<TElement>) : StorageInt
 
     if (!toStorage) throw new Error("No toStorage specified in convert");
 
-    const isBrowser: boolean = IsBrowser();
-    const storageApi: Storage = isBrowser ? window[`${storageType}Storage`] : null;
+    // const isBrowser: boolean = IsBrowser();
+    const storageApi: Storage = useMemo(() => window[`${storageType}Storage`], [ storageType ]);
 
     /// internals
     function getItemInternal() { 
@@ -49,7 +49,7 @@ export function useStorage<TElement>(props: StorageProps<TElement>) : StorageInt
         storageApi?.removeItem(key);
     }
 
-    const [ storedValue, setStoredValue ] = useState<StorageItem<TElement>>(getItem());
+    const [ storedValue, setStoredValue ] = useState<StorageItem<TElement>>(getItem);
 
     // attach event listeners
     useEffect(() => {
